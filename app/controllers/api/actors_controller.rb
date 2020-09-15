@@ -10,11 +10,31 @@ class Api::ActorsController < ApplicationController
     render "show.json.jb"
   end
 
-  def query
-    actor_name = params[:first_name]
-    @actor = Actor.find_by(first_name: actor_name)
+  def create
+    @actor = Actor.new(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      known_for: params[:known_for]
+    )
+    @actor.save
     render "show.json.jb"
   end
+
+  def update
+    @actor = Actor.find(params[:id])
+
+    @actor.first_name = params[:first_name] || @actor.first_name
+    @actor.last_name = params[:last_name] || @actor.last_name
+    @actor.known_for = params[:known_for] || @actor.known_for
+
+    @actor.save
+    render "show.json.jb"
+  end
+
+  def destroy
+    actor = Actor.find(params[:id])
+    actor.destroy
+    render json: {message: "You have destroyed this actor. Gasp."}
+  end
   
-# I'm having an issue figuring out the query one; when I put in the query it returns all actors. The server log says it's rendering the index.json file and I'm not sure what's going on. Otherwise my URL and POST queries work without issue.
 end
