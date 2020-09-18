@@ -2,8 +2,14 @@ class Api::MoviesController < ApplicationController
   
   def index
     @movies = Movie.all
+
+    if params[:search] == "english"
+      @movies = @movies.where("english = true")
+    end 
+
     render "index.json.jb"
   end
+
 
   def show
     movie_id = params[:id]
