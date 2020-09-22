@@ -5,4 +5,6 @@ class Movie < ApplicationRecord
   validates :plot, length: { in: 2..500 }
   validates :director, presence: true
 
+  has_many :actors
+  
 end
