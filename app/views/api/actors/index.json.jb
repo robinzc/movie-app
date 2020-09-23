@@ -1,16 +1,4 @@
 @actors.map do |actor|
-  {
-    id: actor.id,
-    first_name: actor.first_name,
-    last_name: actor.last_name,
-    known_for: actor.known_for,
-    gender: actor.gender,
-    age: actor.age
-  }
-  {
-    movie_plot: actor.movie.plot
-  }
-  
+  render partial: "actor.json.jb", locals: { actor: actor }
 end
 
-#Not sure what's going wrong but the actor.movie.plot line is throwing things off...
