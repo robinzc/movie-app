@@ -1,0 +1,8 @@
+<% @movies.each do |movie| %>
+  <h2><%= movie.title %></h2>
+  <h4>Year: <%= movie.year %></h4> 
+  <h4>Director: <%= movie.director %></h4>
+  <h4>Plot: <%= movie.plot %></h4>
+
+  <a href="/movies/ <%= movie.id %>">More Info</a> 
+  <% end %>

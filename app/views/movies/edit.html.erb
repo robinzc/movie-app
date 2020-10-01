@@ -1,0 +1,17 @@
+<h1>Edit Movie</h1>
+
+<form action="/movies/ <%= @movie.id %>" method="post">
+<input type="hidden" name="_method" value="patch">
+  <div>Title: <input type="text" name="title" value="<%= @movie.title %>"/></div>
+  <div>Year: <input type="text" name="year" value="<%= @movie.year %>"/></div>
+  <div>Director: <input type="text" name="director" value="<%= @movie.director %>"/></div>
+  <div>Plot: <input type="text" name="plot" value="<%= @movie.plot %>"/></div>
+  <div>Genre:
+    <select name="genre_id" id="">
+    <% Genre.all.each do |genre| %>
+      <option value="<%= genre.id %>"><%= genre.genre %></option>
+    <% end %>
+    </select>
+  </div>
+  <input type="submit" value="Update Movie" />
+ </form>
